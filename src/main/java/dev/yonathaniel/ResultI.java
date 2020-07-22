@@ -5,4 +5,5 @@ public interface ResultI {
     double getAverage();
     int getSize();
     String getResult();
+    String getRemarks();
 }

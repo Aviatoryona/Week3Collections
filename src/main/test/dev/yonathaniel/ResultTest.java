@@ -5,9 +5,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ResultTest {
     private Result result;
@@ -31,23 +30,28 @@ public class ResultTest {
     }
 
     @Test
-    public void getTotal() {
+    public void testGetTotal() {
         assertEquals(270, result.getTotal());
     }
 
     @Test
-    public void getAverage() {
+    public void  testGetAverage() {
         assertEquals(90, result.getAverage(), 0);
     }
 
     @Test
-    public void getSize() {
+    public void  testGetSize() {
         assertEquals(3, result.getSize());
     }
 
     @Ignore
     @Test
-    public void getResult() {
+    public void  testGetResult() {
+    }
+
+    @Test
+    public  void  testGetRemarks(){
+        assertEquals("Passed",result.getRemarks());
     }
 
 }

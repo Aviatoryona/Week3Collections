@@ -14,20 +14,20 @@ public class SubjectTest {
     }
 
     @Test
-    public void setScore() {
+    public void  testSetScore() {
         subject.setScore(89);
         assert subject.getScore()!=0;
         assertEquals(89,subject.getScore());
     }
 
     @Test
-    public void getTitle() {
+    public void  testGetTitle() {
         assertNotNull(subject.getTitle());
         assertEquals("Eng",subject.getTitle());
     }
 
     @Test
-    public void getScore() {
+    public void  testGetScore() {
         subject.setScore(89);
         assert subject.getScore()!=0;
         assertEquals(89,subject.getScore());

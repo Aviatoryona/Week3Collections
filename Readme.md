@@ -35,6 +35,7 @@
 	           Kis-78 Teacher- Mariam M
 	           Total- 118
 	           Avg- 59
+	           Remarks- Passed
 	           ...
 			 
 	Structure:

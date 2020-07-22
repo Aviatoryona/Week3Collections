@@ -1,6 +1,7 @@
 package dev.yonathaniel;
 
 import java.util.ArrayList;
+
 /*
   A class to create object to keep student and a associated list of  subjects
  */
@@ -52,17 +53,24 @@ public class Result implements ResultI {
 	           Kis-78 Teacher- Mariam M
 	           Total- 118
 	           Avg- 59
+	           Remarks- Passed
      */
     @Override
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(student.toString());
         for (Subject subject : this.subjects) {
-           stringBuilder.append(subject.toString()).append("\n");
+            stringBuilder.append(subject.toString()).append("\n");
         }
-        stringBuilder.append("Total- ").append(this.getTotal()).append("\n");
-        stringBuilder.append("Avg- ").append(this.getAverage());
+        stringBuilder.append("Total- ").append(this.getTotal()).append("\n")
+                .append("Avg- ").append(this.getAverage()).append("\n")
+                .append("Remarks- ").append(this.getRemarks());
         return stringBuilder.toString();
+    }
+
+    @Override
+    public String getRemarks() {
+        return this.getAverage() < 40 ? "Failed" : "Passed";
     }
 
     @Override
