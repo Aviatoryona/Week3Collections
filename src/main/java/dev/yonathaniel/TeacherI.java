@@ -8,7 +8,7 @@ public interface TeacherI {
 
     boolean addTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
 
-    boolean deleteTeacher(int id);
+    boolean deleteTeacher(int id) throws SQLException;
 
-    boolean updateTeacher(int id,Teacher teacher);
+    boolean updateTeacher(int id,Teacher teacher) throws SQLException;
 }

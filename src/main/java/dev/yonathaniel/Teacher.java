@@ -35,20 +35,27 @@ class Teacher implements TeacherI {
     }
 
     @Override
-    public boolean addTeacher(Teacher teacher) throws SQLException, ClassNotFoundException {
-        PreparedStatement preparedStatement = dbConnection.get
+    public boolean addTeacher(Teacher teacher) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection.getPreparedStatement("INSERT INTO teachers(name) VALUES(?)");
         preparedStatement.setString(1, teacher.getName());
         return dbConnection.execute(preparedStatement);
     }
 
     @Override
-    public boolean deleteTeacher(int id) {
-        return false;
+    public boolean deleteTeacher(int id) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("DELETE FROM teachers WHERE id=?");
+        preparedStatement.setInt(1, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
-    public boolean updateTeacher(int id, Teacher teacher) {
-        return false;
+    public boolean updateTeacher(int id, Teacher teacher) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("UPDATE teachers SET name=? WHERE id=?");
+        preparedStatement.setString(1, teacher.getName());
+        preparedStatement.setInt(2, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     String getName() {
