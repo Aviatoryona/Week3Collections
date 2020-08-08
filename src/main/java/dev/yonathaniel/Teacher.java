@@ -53,4 +53,9 @@ class Teacher implements TeacherI {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s    :   %s", getId(), getName());
+    }
 }
