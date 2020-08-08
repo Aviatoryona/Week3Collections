@@ -3,6 +3,7 @@ package dev.yonathaniel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class SystemDriverClass implements SystemDriverClassI {
@@ -108,11 +109,12 @@ public class SystemDriverClass implements SystemDriverClassI {
     @Override
     public void viewTeacher() throws SQLException, ClassNotFoundException {
         Teacher teacher = new Teacher();
-        ArrayList<Teacher> teachers = teacher.getTeachers();
+        Map<Integer, Teacher> teachers = teacher.getTeachers();
         if (teachers.isEmpty()) {
             System.out.println("No Records Available");
         } else {
-            for (Teacher teacher1 : teachers) {
+            for (Integer integer : teachers.keySet()) {
+                Teacher teacher1 = teachers.get(integer);
                 System.out.println(teacher1.toString());
             }
         }
