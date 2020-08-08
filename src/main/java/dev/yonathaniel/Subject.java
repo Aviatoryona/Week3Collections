@@ -2,6 +2,7 @@ package dev.yonathaniel;
 
 import dev.yonathaniel.db.DbConnection;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -54,7 +55,7 @@ public class Subject implements SubjectI {
     }
 
     @Override
-    public Map<Integer, Subject> getSubjects() throws SQLException, ClassNotFoundException {
+    public Map<Integer, Subject> getSubjects() throws SQLException {
         ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM subjects");
         Map<Integer, Subject> subjects = new HashMap<Integer, Subject>();
         while (resultSet.next()) {
@@ -72,18 +73,29 @@ public class Subject implements SubjectI {
     }
 
     @Override
-    public boolean addSubject(Subject subject) throws SQLException, ClassNotFoundException {
-
-        return false;
+    public boolean addSubject(Subject subject) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("INSERT INTO subjects(title,teachername) VALUES(?,?)");
+        preparedStatement.setString(1, subject.getTitle());
+        preparedStatement.setString(2, subject.getTeacher().getName());
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
     public boolean deleteSubject(int id) throws SQLException {
-        return false;
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("DELETE FROM subjects WHERE id=?");
+        preparedStatement.setInt(1, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
     public boolean updateSubject(int id, Subject subject) throws SQLException {
-        return false;
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("UPDATE subjects SET title=?,teachername=? WHERE id=?");
+        preparedStatement.setString(1, subject.getTitle());
+        preparedStatement.setString(2, subject.getTeacher().getName());
+        preparedStatement.setInt(3, id);
+        return dbConnection.execute(preparedStatement);
     }
 }
