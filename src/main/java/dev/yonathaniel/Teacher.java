@@ -36,9 +36,7 @@ class Teacher implements TeacherI {
 
     @Override
     public boolean addTeacher(Teacher teacher) throws SQLException, ClassNotFoundException {
-        PreparedStatement preparedStatement = dbConnection
-                .getConnection()
-                .prepareStatement("INSERT INTO teachers(name) VALUES(?)");
+        PreparedStatement preparedStatement = dbConnection.get
         preparedStatement.setString(1, teacher.getName());
         return dbConnection.execute(preparedStatement);
     }
