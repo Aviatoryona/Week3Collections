@@ -23,7 +23,7 @@ public interface ResultI {
 
     boolean deleteResult(int id) throws SQLException;
 
-    boolean updateResult(int id, Result result) throws SQLException;
+    boolean updateResult(int id, ResultModel resultModel) throws SQLException;
 
     void clearAll();
 }

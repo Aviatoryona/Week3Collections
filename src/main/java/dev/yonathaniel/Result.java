@@ -146,7 +146,10 @@ public class Result implements ResultI {
 
     @Override
     public boolean deleteResult(int id) throws SQLException {
-        return false;
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("DELETE FROM results WHERE id=?");
+        preparedStatement.setInt(1, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
