@@ -1,15 +1,52 @@
 package dev.yonathaniel;
 
+import java.util.Scanner;
+
 public class SystemDriverClass implements SystemDriverClassI {
     @Override
     public void showMainMenu() {
-        System.out.println("SELECT OPTION:");
+        System.out.println("    SELECT OPTION:  ");
         System.out.println("1. Manage Teachers");
         System.out.println("2. Manage Students");
         System.out.println("3. Manage Subjects");
         System.out.println("4. Manage Results");
+        System.out.println("X. Exit");
+        System.out.println("");
 
+        char choice = '0';
+        do {
 
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine().toLowerCase().charAt(0);
+
+            switch (choice) {
+                case '1': {
+                    showTeachersMenu();
+                    break;
+                }
+                case '2': {
+                    showStudentsMenu();
+                    break;
+                }
+                case '3': {
+                    showSubjectsMenu();
+                    break;
+                }
+                case '4': {
+                    showResultsMenu();
+                    break;
+                }
+                case 'x': {
+                    System.out.println("Bye!");
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice");
+                    choice = '0';
+            }
+
+        } while (choice == '0');
     }
 
     @Override
