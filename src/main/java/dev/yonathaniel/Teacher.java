@@ -3,6 +3,7 @@ package dev.yonathaniel;
 import dev.yonathaniel.db.DbConnection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,14 +16,18 @@ class Teacher implements TeacherI {
 
     private DbConnection dbConnection;
 
-    Teacher() throws SQLException, ClassNotFoundException {
+    private Teacher() throws SQLException, ClassNotFoundException {
         init();
     }
 
     //initialize variables
-    Teacher(String name) throws SQLException, ClassNotFoundException {
-        this.name = name;
-        init();
+    Teacher(String name) {
+        setName(name);
+    }
+
+    private Teacher(String name, int id) {
+        setName(name);
+        setId(id);
     }
 
     private void init() throws SQLException, ClassNotFoundException {
@@ -30,8 +35,18 @@ class Teacher implements TeacherI {
     }
 
     @Override
-    public ArrayList<Teacher> getTeachers() {
-        return null;
+    public ArrayList<Teacher> getTeachers() throws SQLException {
+        ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM teachers");
+        ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+        while (resultSet.next()) {
+            teachers.add(
+                    new Teacher(
+                            resultSet.getString("name"),
+                            resultSet.getInt("id")
+                    )
+            );
+        }
+        return teachers;
     }
 
     @Override

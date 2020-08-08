@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface TeacherI {
-    ArrayList<Teacher> getTeachers();
+    ArrayList<Teacher> getTeachers() throws SQLException, ClassNotFoundException;
 
     boolean addTeacher(Teacher teacher) throws SQLException, ClassNotFoundException;
 
