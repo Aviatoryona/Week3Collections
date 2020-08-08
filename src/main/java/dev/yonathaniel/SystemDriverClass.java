@@ -293,7 +293,7 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void updateSubject() throws SQLException, ClassNotFoundException {
-        System.out.println("Add Subject(s):");
+        System.out.println("Update Subject(s):");
         char yN = 'y';
         do {
             System.out.println("Enter subject Id");
@@ -304,7 +304,7 @@ public class SystemDriverClass implements SystemDriverClassI {
             String teacher = new Scanner(System.in).nextLine();
 
             Subject subject = new Subject();
-            if (!subject.updateSubject(id,new Subject(
+            if (!subject.updateSubject(id, new Subject(
                     name,
                     new Teacher(
                             teacher
@@ -400,23 +400,103 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void viewStudents() {
-
+    public void viewStudents() throws SQLException, ClassNotFoundException {
+        Student student = new Student();
+        Map<Integer, Student> subjectMap = student.getStudents();
+        for (Integer integer :
+                subjectMap.keySet()) {
+            System.out.println(subjectMap.get(integer).toString());
+        }
     }
 
     @Override
-    public void addStudent() {
+    public void addStudent() throws SQLException, ClassNotFoundException {
+        System.out.println("Add Student(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter student's name");
+            String name = new Scanner(System.in).nextLine();
+            System.out.println("Enter student's admission NO:");
+            String admNo = new Scanner(System.in).nextLine();
 
+            Student student = new Student();
+            if (!student.addStudent(new Student(
+                    name,
+                    admNo
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
-    public void updateStudent() {
+    public void updateStudent() throws SQLException, ClassNotFoundException {
+        System.out.println("Update Student(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter student's Id");
+            int id = new Scanner(System.in).nextInt();
+            System.out.println("Enter student's name");
+            String name = new Scanner(System.in).nextLine();
+            System.out.println("Enter student's admission NO:");
+            String admNo = new Scanner(System.in).nextLine();
 
+            Student student = new Student();
+            if (!student.updateStudent(id, new Student(
+                    name,
+                    admNo
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
-    public void deleteStudent() {
+    public void deleteStudent() throws SQLException, ClassNotFoundException {
+        System.out.println("Delete Student(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter students's Id");
+            int id = new Scanner(System.in).nextInt();
 
+            Student student = new Student();
+            if (!student.deleteStudent(id)) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showTeachersMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override

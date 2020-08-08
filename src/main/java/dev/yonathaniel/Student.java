@@ -61,7 +61,6 @@ public class Student implements StudentI {
 
     @Override
     public boolean addStudent(Student student) throws SQLException {
-
         PreparedStatement preparedStatement = dbConnection
                 .getPreparedStatement("INSERT INTO students(name,admno) VALUES(?,?)");
         preparedStatement.setString(1, student.getName());

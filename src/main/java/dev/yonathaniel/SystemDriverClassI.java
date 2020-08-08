@@ -28,13 +28,13 @@ public interface SystemDriverClassI {
     void showStudentsMenu() throws SQLException, ClassNotFoundException;
 
 
-    void viewStudents();
+    void viewStudents() throws SQLException, ClassNotFoundException;
 
-    void addStudent();
+    void addStudent() throws SQLException, ClassNotFoundException;
 
-    void updateStudent();
+    void updateStudent() throws SQLException, ClassNotFoundException;
 
-    void deleteStudent();
+    void deleteStudent() throws SQLException, ClassNotFoundException;
 
     void showResultsMenu() throws SQLException, ClassNotFoundException;
 
