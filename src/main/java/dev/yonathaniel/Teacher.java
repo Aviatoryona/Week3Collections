@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
    A class to create object for teacher details
@@ -35,11 +37,12 @@ class Teacher implements TeacherI {
     }
 
     @Override
-    public ArrayList<Teacher> getTeachers() throws SQLException {
+    public Map<Integer, Teacher> getTeachers() throws SQLException {
         ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM teachers");
-        ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+        Map<Integer, Teacher> teachers = new HashMap<Integer, Teacher>();
         while (resultSet.next()) {
-            teachers.add(
+            teachers.put(
+                    resultSet.getInt("id"),
                     new Teacher(
                             resultSet.getString("name"),
                             resultSet.getInt("id")
