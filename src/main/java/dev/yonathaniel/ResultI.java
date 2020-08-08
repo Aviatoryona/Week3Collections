@@ -2,7 +2,6 @@ package dev.yonathaniel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface ResultI {
     int getTotal();
@@ -18,9 +17,9 @@ public interface ResultI {
 
     ArrayList<ResultModel> viewAll() throws SQLException, ClassNotFoundException;
 
-    Map<Integer, Result> getResults(String admNo) throws SQLException, ClassNotFoundException;
+    Result getResults(String admNo) throws SQLException, ClassNotFoundException;
 
-    boolean addResult(Result result) throws SQLException, ClassNotFoundException;
+    boolean addResult(ResultModel resultModel) throws SQLException, ClassNotFoundException;
 
     boolean deleteResult(int id) throws SQLException;
 

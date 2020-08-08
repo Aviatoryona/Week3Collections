@@ -2,11 +2,10 @@ package dev.yonathaniel;
 
 import dev.yonathaniel.db.DbConnection;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /*
   A class to create object to keep student and a associated list of  subjects
@@ -16,8 +15,9 @@ public class Result implements ResultI {
     private ArrayList<Subject> subjects;
 
     private DbConnection dbConnection;
+
     public Result() throws SQLException, ClassNotFoundException {
-        this.dbConnection=DbConnection.getInstance();
+        this.dbConnection = DbConnection.getInstance();
     }
 
     //initialise variables
@@ -84,25 +84,58 @@ public class Result implements ResultI {
         return this.getAverage() < 40 ? "Failed" : "Passed";
     }
 
+    // TODO: 8/8/2020
     @Override
-    public Map<Integer, Result> getResults() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM results,students,subjects WHERE results.studentadmno=students.admno &&\n" +
-                "results.subjecttitle=subjects.title;");
-        Map<Integer, Result> results = new HashMap<Integer, Result>();
+    public ArrayList<ResultModel> viewAll() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM results");
+        ArrayList<ResultModel> results = new ArrayList<ResultModel>();
         while (resultSet.next()) {
-            results.put(
-                    resultSet.getInt("id"),
-                    new Teacher(
-                            resultSet.getString("name"),
-                            resultSet.getInt("id")
+            results.add(
+                    new ResultModel(
+                            resultSet.getInt("id"),
+                            resultSet.getString("studentadmno"),
+                            resultSet.getString("subjecttitle"),
+                            resultSet.getDouble("score")
                     )
             );
         }
-        return teachers;
+        return results;
+    }
+
+    // TODO: 8/8/2020
+    @Override
+    public Result getResults(String admNo) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection.getPreparedStatement("SELECT * FROM results,students,subjects WHERE results.studentadmno=students.admno &&\n" +
+                "results.subjecttitle=subjects.title && results.studentadmno=?;");
+        preparedStatement.setString(1, admNo);
+        ResultSet resultSet = dbConnection.executeQuery(preparedStatement);
+        ArrayList<Subject> subjects = new ArrayList<Subject>();
+        Student student1 = null;
+        while (resultSet.next()) {
+            if (student1 == null)
+                student1 = new Student(
+                        resultSet.getString("name"),
+                        resultSet.getString("admno")
+                );
+
+            Subject subject = new Subject(
+                    resultSet.getString("title"),
+                    new Teacher(
+                            resultSet.getString("teachername")
+                    )
+            );
+            subjects.add(subject);
+
+        }
+
+        return new Result(
+                student1,
+                subjects
+        );
     }
 
     @Override
-    public boolean addResult(Result result) throws SQLException, ClassNotFoundException {
+    public boolean addResult(ResultModel resultModel) throws SQLException, ClassNotFoundException {
         return false;
     }
 
