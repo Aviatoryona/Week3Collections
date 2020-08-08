@@ -53,6 +53,11 @@ public class DbConnection implements DbConnectionI {
         return preparedStatement.executeUpdate() != -1;
     }
 
+    @Override
+    public PreparedStatement getPreparedStatement(String sql) throws SQLException {
+        return this.connection.prepareStatement(sql);
+    }
+
 
     @Override
     public boolean execute(String sql) throws SQLException {

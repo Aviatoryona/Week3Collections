@@ -13,7 +13,7 @@ public interface DbConnectionI {
 
 //    boolean execute(String sql, Object[][] params) throws SQLException;
 
-    PreparedStatement getPreparedStatement(String sql);
+    PreparedStatement getPreparedStatement(String sql) throws SQLException;
 
     boolean execute(String sql) throws SQLException;
 
