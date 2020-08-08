@@ -153,13 +153,17 @@ public class Result implements ResultI {
     }
 
     @Override
-    public boolean updateResult(int id, Result result) throws SQLException {
-        return false;
+    public boolean updateResult(int id, ResultModel resultModel) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("UPDATE results SET score=? WHERE id=?");
+        preparedStatement.setDouble(1, resultModel.getScore());
+        preparedStatement.setInt(1, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
-    public void clearAll() {
-
+    public void clearAll() throws SQLException {
+        dbConnection.execute("TRUNCATE TABLE results");
     }
 
     @Override

@@ -25,5 +25,5 @@ public interface ResultI {
 
     boolean updateResult(int id, ResultModel resultModel) throws SQLException;
 
-    void clearAll();
+    void clearAll() throws SQLException;
 }
