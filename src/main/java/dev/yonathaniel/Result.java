@@ -1,6 +1,12 @@
 package dev.yonathaniel;
 
+import dev.yonathaniel.db.DbConnection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
   A class to create object to keep student and a associated list of  subjects
@@ -8,6 +14,11 @@ import java.util.ArrayList;
 public class Result implements ResultI {
     private Student student;
     private ArrayList<Subject> subjects;
+
+    private DbConnection dbConnection;
+    public Result() throws SQLException, ClassNotFoundException {
+        this.dbConnection=DbConnection.getInstance();
+    }
 
     //initialise variables
     Result(Student student, ArrayList<Subject> subjects) {
@@ -71,6 +82,43 @@ public class Result implements ResultI {
     @Override
     public String getRemarks() {
         return this.getAverage() < 40 ? "Failed" : "Passed";
+    }
+
+    @Override
+    public Map<Integer, Result> getResults() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM results,students,subjects WHERE results.studentadmno=students.admno &&\n" +
+                "results.subjecttitle=subjects.title;");
+        Map<Integer, Result> results = new HashMap<Integer, Result>();
+        while (resultSet.next()) {
+            results.put(
+                    resultSet.getInt("id"),
+                    new Teacher(
+                            resultSet.getString("name"),
+                            resultSet.getInt("id")
+                    )
+            );
+        }
+        return teachers;
+    }
+
+    @Override
+    public boolean addResult(Result result) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean deleteResult(int id) throws SQLException {
+        return false;
+    }
+
+    @Override
+    public boolean updateResult(int id, Result result) throws SQLException {
+        return false;
+    }
+
+    @Override
+    public void clearAll() {
+
     }
 
     @Override
