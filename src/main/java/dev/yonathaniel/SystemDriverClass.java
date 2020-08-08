@@ -292,13 +292,64 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void updateSubject() {
+    public void updateSubject() throws SQLException, ClassNotFoundException {
+        System.out.println("Add Subject(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter subject Id");
+            int id = new Scanner(System.in).nextInt();
+            System.out.println("Enter subject's title");
+            String name = new Scanner(System.in).nextLine();
+            System.out.println("Enter teacher's name");
+            String teacher = new Scanner(System.in).nextLine();
 
+            Subject subject = new Subject();
+            if (!subject.updateSubject(id,new Subject(
+                    name,
+                    new Teacher(
+                            teacher
+                    )
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
-    public void deleteSubject() {
+    public void deleteSubject() throws SQLException, ClassNotFoundException {
+        System.out.println("Delete Subject(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter subject's Id");
+            int id = new Scanner(System.in).nextInt();
 
+            Subject subject = new Subject();
+            if (!subject.deleteSubject(id)) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showTeachersMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override

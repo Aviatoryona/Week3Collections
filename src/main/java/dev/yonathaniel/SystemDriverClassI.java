@@ -21,9 +21,9 @@ public interface SystemDriverClassI {
 
     void addSubject() throws SQLException, ClassNotFoundException;
 
-    void updateSubject();
+    void updateSubject() throws SQLException, ClassNotFoundException;
 
-    void deleteSubject();
+    void deleteSubject() throws SQLException, ClassNotFoundException;
 
     void showStudentsMenu() throws SQLException, ClassNotFoundException;
 

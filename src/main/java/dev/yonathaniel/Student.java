@@ -60,7 +60,7 @@ public class Student implements StudentI {
     }
 
     @Override
-    public boolean addStudent(Student student) throws SQLException, ClassNotFoundException {
+    public boolean addStudent(Student student) throws SQLException {
 
         PreparedStatement preparedStatement = dbConnection
                 .getPreparedStatement("INSERT INTO students(name,admno) VALUES(?,?)");
