@@ -266,19 +266,24 @@ public class SystemDriverClass implements SystemDriverClassI {
 
             switch (choice) {
                 case '1': {
-                    viewStudents();
+                    viewResults();
                     break;
                 }
                 case '2': {
-                    addStudent();
+                    addResult();
                     break;
                 }
                 case '3': {
-                    deleteStudent();
+                    deleteResult();
                     break;
                 }
                 case '4': {
-                    updateStudent();
+                    updateResult();
+                    break;
+                }
+
+                case '5': {
+                    clearResults();
                     break;
                 }
 
