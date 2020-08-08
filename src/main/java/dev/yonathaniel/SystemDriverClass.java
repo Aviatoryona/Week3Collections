@@ -3,6 +3,12 @@ package dev.yonathaniel;
 public class SystemDriverClass implements SystemDriverClassI {
     @Override
     public void showMainMenu() {
+        System.out.println("SELECT OPTION:");
+        System.out.println("1. Manage Teachers");
+        System.out.println("2. Manage Students");
+        System.out.println("3. Manage Subjects");
+        System.out.println("4. Manage Results");
+
 
     }
 

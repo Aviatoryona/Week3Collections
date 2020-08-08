@@ -7,7 +7,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+
+
+
+    /*
+      Driver method using collections only
+     */
+    public void beforeDatabase() {
 	/*
 	    1. Capture subject(s) and respective teacher and put in a collection
 	       eg Title-Eng ,Teacher- Brian T
