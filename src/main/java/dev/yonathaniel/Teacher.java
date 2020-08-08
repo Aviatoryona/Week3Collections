@@ -16,7 +16,7 @@ class Teacher implements TeacherI {
 
     private DbConnection dbConnection;
 
-    private Teacher() throws SQLException, ClassNotFoundException {
+    Teacher() throws SQLException, ClassNotFoundException {
         init();
     }
 

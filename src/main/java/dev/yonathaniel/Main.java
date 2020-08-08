@@ -8,6 +8,12 @@ import java.util.Scanner;
 public class Main {
 
 
+    public static void main(String[] args) {
+        /*
+        show menu
+         */
+        new SystemDriverClass().showMainMenu();
+    }
 
 
     /*

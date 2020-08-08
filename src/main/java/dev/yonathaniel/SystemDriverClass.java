@@ -154,11 +154,11 @@ public class SystemDriverClass implements SystemDriverClassI {
         System.out.println("Update Teacher(s):");
         char yN = 'y';
         do {
-            Scanner in = new Scanner(System.in);
+            Scanner scannerU = new Scanner(System.in);
             System.out.println("Enter teacher's Id");
-            int id = in.nextInt();
+            int id = scannerU.nextInt();
             System.out.println("Enter teacher's name");
-            String name = in.nextLine();
+            String name = scannerU.nextLine();
             if (!teacher.updateTeacher(id, new Teacher(name))) {
                 System.out.println("Failed, please try again");
             } else {
@@ -166,7 +166,7 @@ public class SystemDriverClass implements SystemDriverClassI {
             }
 
             System.out.println("Proceed? (Y/N)");
-            yN = in.nextLine().toLowerCase().charAt(0);
+            yN = scannerU.nextLine().toLowerCase().charAt(0);
             if (yN == 'n') {
                 showTeachersMenu();
             } else {
@@ -181,9 +181,9 @@ public class SystemDriverClass implements SystemDriverClassI {
         System.out.println("Delete Teacher(s):");
         char yN = 'y';
         do {
-            Scanner in = new Scanner(System.in);
+            Scanner scannerd = new Scanner(System.in);
             System.out.println("Enter teacher's Id");
-            int id = in.nextInt();
+            int id = scannerd.nextInt();
 
             Teacher teacher = new Teacher();
             if (!teacher.deleteTeacher(id)) {
@@ -193,7 +193,7 @@ public class SystemDriverClass implements SystemDriverClassI {
             }
 
             System.out.println("Proceed? (Y/N)");
-            yN = in.nextLine().toLowerCase().charAt(0);
+            yN = scannerd.nextLine().toLowerCase().charAt(0);
             if (yN == 'n') {
                 showTeachersMenu();
             } else {
