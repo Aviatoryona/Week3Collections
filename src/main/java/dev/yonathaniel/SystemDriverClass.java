@@ -51,7 +51,47 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void showTeachersMenu() {
+        System.out.println("");
+        System.out.println("    Teachers Manage:    ");
+        System.out.println("1. Add Teacher(s)");
+        System.out.println("1. Add Teacher(s)");
+        System.out.println("2. Delete Teacher(s)");
+        System.out.println("3. Update Teacher(s)");
+        System.out.println("X. Back");
+        char choice = '0';
+        do {
 
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine().toLowerCase().charAt(0);
+
+            switch (choice) {
+                case '1': {
+                    addTeacher();
+                    break;
+                }
+                case '2': {
+                    deleteTeacher();
+                    break;
+                }
+                case '3': {
+                    updateTeacher();
+                    break;
+                }
+                case '4': {
+                    showResultsMenu();
+                    break;
+                }
+                case 'x': {
+                    System.out.println("Bye!");
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice");
+                    choice = '0';
+            }
+
+        } while (choice == '0');
     }
 
     @Override

@@ -5,6 +5,8 @@ public interface SystemDriverClassI {
 
     void showTeachersMenu();
 
+    void viewTeacher();
+
     void addTeacher();
 
     void updateTeacher();
@@ -13,6 +15,8 @@ public interface SystemDriverClassI {
 
     void showSubjectsMenu();
 
+    void viewSubjects();
+
     void addSubject();
 
     void updateSubject();
@@ -20,6 +24,9 @@ public interface SystemDriverClassI {
     void deleteSubject();
 
     void showStudentsMenu();
+
+
+    void viewStudents();
 
     void addStudent();
 
