@@ -117,7 +117,48 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void showSubjectsMenu() {
+        System.out.println("");
+        System.out.println("    Subjects Manage:    ");
+        System.out.println("1. View All");
+        System.out.println("2. Add Subject(s)");
+        System.out.println("3. Delete Subject(s)");
+        System.out.println("4. Update Subject(s)");
+        System.out.println("X. Back");
+        char choice = '0';
+        do {
 
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine().toLowerCase().charAt(0);
+
+            switch (choice) {
+                case '1': {
+                    viewSubjects();
+                    break;
+                }
+                case '2': {
+                    addSubject();
+                    break;
+                }
+                case '3': {
+                    deleteSubject();
+                    break;
+                }
+                case '4': {
+                    updateSubject();
+                    break;
+                }
+
+                case 'x': {
+                    showMainMenu();
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice");
+                    choice = '0';
+            }
+
+        } while (choice == '0');
     }
 
     @Override
@@ -142,6 +183,48 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void showStudentsMenu() {
+        System.out.println("");
+        System.out.println("    Students Manage:    ");
+        System.out.println("1. View All");
+        System.out.println("2. Add Student(s)");
+        System.out.println("3. Delete Student(s)");
+        System.out.println("4. Update Student(s)");
+        System.out.println("X. Back");
+        char choice = '0';
+        do {
+
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine().toLowerCase().charAt(0);
+
+            switch (choice) {
+                case '1': {
+                    viewStudents();
+                    break;
+                }
+                case '2': {
+                    addStudent();
+                    break;
+                }
+                case '3': {
+                    deleteStudent();
+                    break;
+                }
+                case '4': {
+                    updateStudent();
+                    break;
+                }
+
+                case 'x': {
+                    showMainMenu();
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice");
+                    choice = '0';
+            }
+
+        } while (choice == '0');
 
     }
 
@@ -167,7 +250,49 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void showResultsMenu() {
+        System.out.println("");
+        System.out.println("    Results Manage:    ");
+        System.out.println("1. View All");
+        System.out.println("2. Add Result(s)");
+        System.out.println("3. Delete Result(s)");
+        System.out.println("4. Update Result(s)");
+        System.out.println("5. Clear All");
+        System.out.println("X. Back");
+        char choice = '0';
+        do {
 
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextLine().toLowerCase().charAt(0);
+
+            switch (choice) {
+                case '1': {
+                    viewStudents();
+                    break;
+                }
+                case '2': {
+                    addStudent();
+                    break;
+                }
+                case '3': {
+                    deleteStudent();
+                    break;
+                }
+                case '4': {
+                    updateStudent();
+                    break;
+                }
+
+                case 'x': {
+                    showMainMenu();
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice");
+                    choice = '0';
+            }
+
+        } while (choice == '0');
     }
 
     @Override
