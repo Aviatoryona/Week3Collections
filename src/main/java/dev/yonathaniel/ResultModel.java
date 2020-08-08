@@ -44,4 +44,9 @@ public class ResultModel {
     public void setScore(double score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s    %s  %s  %s", getId(), getStudentadmno(), getSubject(), getScore());
+    }
 }

@@ -27,7 +27,6 @@ public interface SystemDriverClassI {
 
     void showStudentsMenu() throws SQLException, ClassNotFoundException;
 
-
     void viewStudents() throws SQLException, ClassNotFoundException;
 
     void addStudent() throws SQLException, ClassNotFoundException;
@@ -42,9 +41,11 @@ public interface SystemDriverClassI {
 
     void updateResult() throws SQLException, ClassNotFoundException;
 
-    void deleteResult();
+    void deleteResult() throws SQLException, ClassNotFoundException;
 
-    void viewResults();
+    void viewResults() throws SQLException, ClassNotFoundException;
 
-    void clearResults();
+    void viewStudentResult() throws SQLException, ClassNotFoundException;
+
+    void clearResults() throws SQLException, ClassNotFoundException;
 }
