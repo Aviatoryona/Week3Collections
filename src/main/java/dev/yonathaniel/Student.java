@@ -1,14 +1,25 @@
 package dev.yonathaniel;
 
+import dev.yonathaniel.db.DbConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 /*
    A class to create object for student details
  */
-public class Student implements StudentI{
+public class Student implements StudentI {
     private String name;
     private String admissionNumber;
+
+    private DbConnection dbConnection;
+
+    public Student() throws SQLException, ClassNotFoundException {
+        this.dbConnection = DbConnection.getInstance();
+    }
 
     //initialize variables
     Student(String name, String admissionNumber) {
@@ -33,22 +44,46 @@ public class Student implements StudentI{
     }
 
     @Override
-    public Map<Integer, Student> getStudents() throws SQLException, ClassNotFoundException {
-        return null;
+    public Map<Integer, Student> getStudents() throws SQLException {
+        ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM students");
+        Map<Integer, Student> students = new HashMap<Integer, Student>();
+        while (resultSet.next()) {
+            students.put(
+                    resultSet.getInt(1),
+                    new Student(
+                            resultSet.getString(2),
+                            resultSet.getString(3)
+                    )
+            );
+        }
+        return students;
     }
 
     @Override
     public boolean addStudent(Student student) throws SQLException, ClassNotFoundException {
-        return false;
+
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("INSERT INTO students(name,admno) VALUES(?,?)");
+        preparedStatement.setString(1, student.getName());
+        preparedStatement.setString(2, student.getAdmissionNumber());
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
     public boolean deleteStudent(int id) throws SQLException {
-        return false;
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("DELETE FROM students WHERE id=?");
+        preparedStatement.setInt(1, id);
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
     public boolean updateStudent(int id, Student student) throws SQLException {
-        return false;
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("UPDATE students SET name=?,admno=? WHERE id=?");
+        preparedStatement.setString(1, student.getName());
+        preparedStatement.setString(2, student.getAdmissionNumber());
+        preparedStatement.setInt(3, id);
+        return dbConnection.execute(preparedStatement);
     }
 }
