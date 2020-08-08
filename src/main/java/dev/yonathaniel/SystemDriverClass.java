@@ -53,10 +53,10 @@ public class SystemDriverClass implements SystemDriverClassI {
     public void showTeachersMenu() {
         System.out.println("");
         System.out.println("    Teachers Manage:    ");
-        System.out.println("1. Add Teacher(s)");
-        System.out.println("1. Add Teacher(s)");
-        System.out.println("2. Delete Teacher(s)");
-        System.out.println("3. Update Teacher(s)");
+        System.out.println("1. View All");
+        System.out.println("2. Add Teacher(s)");
+        System.out.println("3. Delete Teacher(s)");
+        System.out.println("4. Update Teacher(s)");
         System.out.println("X. Back");
         char choice = '0';
         do {
@@ -66,23 +66,24 @@ public class SystemDriverClass implements SystemDriverClassI {
 
             switch (choice) {
                 case '1': {
-                    addTeacher();
+                    viewTeacher();
                     break;
                 }
                 case '2': {
-                    deleteTeacher();
+                    addTeacher();
                     break;
                 }
                 case '3': {
-                    updateTeacher();
+                    deleteTeacher();
                     break;
                 }
                 case '4': {
-                    showResultsMenu();
+                    updateTeacher();
                     break;
                 }
+
                 case 'x': {
-                    System.out.println("Bye!");
+                    showMainMenu();
                     break;
                 }
 
@@ -92,6 +93,11 @@ public class SystemDriverClass implements SystemDriverClassI {
             }
 
         } while (choice == '0');
+    }
+
+    @Override
+    public void viewTeacher() {
+
     }
 
     @Override
@@ -115,6 +121,11 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
+    public void viewSubjects() {
+
+    }
+
+    @Override
     public void addSubject() {
 
     }
@@ -131,6 +142,11 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void showStudentsMenu() {
+
+    }
+
+    @Override
+    public void viewStudents() {
 
     }
 
