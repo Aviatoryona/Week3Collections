@@ -135,8 +135,13 @@ public class Result implements ResultI {
     }
 
     @Override
-    public boolean addResult(ResultModel resultModel) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean addResult(ResultModel resultModel) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection
+                .getPreparedStatement("INSERT INTO results(studentadmno,subjecttitle,score) VALUES(?,?,?)");
+        preparedStatement.setString(1, resultModel.getStudentadmno());
+        preparedStatement.setString(2, resultModel.getSubject());
+        preparedStatement.setDouble(3, resultModel.getScore());
+        return dbConnection.execute(preparedStatement);
     }
 
     @Override
