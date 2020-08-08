@@ -1,5 +1,6 @@
 package dev.yonathaniel;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -24,7 +25,13 @@ public class SystemDriverClass implements SystemDriverClassI {
 
             switch (choice) {
                 case '1': {
-                    showTeachersMenu();
+                    try {
+                        showTeachersMenu();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
                 case '2': {
@@ -53,7 +60,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void showTeachersMenu() {
+    public void showTeachersMenu() throws SQLException, ClassNotFoundException {
         System.out.println("");
         System.out.println("    Teachers Manage:    ");
         System.out.println("1. View All");
@@ -99,7 +106,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void viewTeacher() {
+    public void viewTeacher() throws SQLException, ClassNotFoundException {
         Teacher teacher = new Teacher();
         ArrayList<Teacher> teachers = teacher.getTeachers();
         if (teachers.isEmpty()) {
@@ -115,7 +122,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void addTeacher() {
+    public void addTeacher() throws SQLException, ClassNotFoundException {
         System.out.println("Add Teacher(s):");
         char yN = 'y';
         do {
@@ -123,9 +130,11 @@ public class SystemDriverClass implements SystemDriverClassI {
             Scanner in = new Scanner(System.in);
             String name = in.nextLine();
 
-            Teacher teacher = new Teacher(name);
-            if (!teacher.addTeacher(teacher)) {
+            Teacher teacher = new Teacher();
+            if (!teacher.addTeacher(new Teacher(name))) {
                 System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
             }
 
             System.out.println("Proceed? (Y/N)");
@@ -140,17 +149,20 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void updateTeacher() {
+    public void updateTeacher() throws SQLException, ClassNotFoundException {
+        Teacher teacher = new Teacher();
         System.out.println("Update Teacher(s):");
         char yN = 'y';
         do {
-            System.out.println("Enter teacher's name");
             Scanner in = new Scanner(System.in);
+            System.out.println("Enter teacher's Id");
+            int id = in.nextInt();
+            System.out.println("Enter teacher's name");
             String name = in.nextLine();
-
-            Teacher teacher = new Teacher(name);
-            if (!teacher.addTeacher(teacher)) {
+            if (!teacher.updateTeacher(id, new Teacher(name))) {
                 System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
             }
 
             System.out.println("Proceed? (Y/N)");
@@ -165,8 +177,30 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void deleteTeacher() {
+    public void deleteTeacher() throws SQLException, ClassNotFoundException {
+        System.out.println("Delete Teacher(s):");
+        char yN = 'y';
+        do {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Enter teacher's Id");
+            int id = in.nextInt();
 
+            Teacher teacher = new Teacher();
+            if (!teacher.deleteTeacher(id)) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = in.nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showTeachersMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override

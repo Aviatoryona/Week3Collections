@@ -1,17 +1,19 @@
 package dev.yonathaniel;
 
+import java.sql.SQLException;
+
 public interface SystemDriverClassI {
     void showMainMenu();
 
-    void showTeachersMenu();
+    void showTeachersMenu() throws SQLException, ClassNotFoundException;
 
-    void viewTeacher();
+    void viewTeacher() throws SQLException, ClassNotFoundException;
 
-    void addTeacher();
+    void addTeacher() throws SQLException, ClassNotFoundException;
 
-    void updateTeacher();
+    void updateTeacher() throws SQLException, ClassNotFoundException;
 
-    void deleteTeacher();
+    void deleteTeacher() throws SQLException, ClassNotFoundException;
 
     void showSubjectsMenu();
 
