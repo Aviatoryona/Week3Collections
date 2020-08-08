@@ -26,7 +26,7 @@ public class DbConnection implements DbConnectionI {
         return new DbConnection(url, username, password);
     }
 
-    static DbConnection getInstance() throws SQLException, ClassNotFoundException {
+    public static DbConnection getInstance() throws SQLException, ClassNotFoundException {
         return new DbConnection();
     }
 

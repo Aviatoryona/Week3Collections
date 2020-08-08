@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public interface TeacherI {
     ArrayList<Teacher> getTeachers();
 
-    boolean addTeacher();
+    boolean addTeacher(Teacher teacher);
 
-    boolean deleteTeacher();
+    boolean deleteTeacher(int id);
 
-    boolean updateTeacher();
+    boolean updateTeacher(int id);
 }

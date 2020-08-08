@@ -1,8 +1,11 @@
 package dev.yonathaniel;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class SystemDriverClass implements SystemDriverClassI {
+
     @Override
     public void showMainMenu() {
         System.out.println("    SELECT OPTION:  ");
@@ -97,7 +100,15 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void viewTeacher() {
+       Teacher teacher=new Teacher();
+        ArrayList<Teacher> teachers=teacher.getTeachers();
+        if (teachers.isEmpty()){
+            System.out.println("No Records Available");
+        }else{
+            for (int i = 0; i < teachers.size(); i++) {
 
+            }
+        }
     }
 
     @Override
