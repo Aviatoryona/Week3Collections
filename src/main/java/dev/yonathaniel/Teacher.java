@@ -34,7 +34,7 @@ class Teacher implements TeacherI {
     }
 
     @Override
-    public boolean updateTeacher(int id) {
+    public boolean updateTeacher(int id,Teacher teacher) {
         return false;
     }
 

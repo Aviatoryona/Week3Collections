@@ -100,25 +100,68 @@ public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
     public void viewTeacher() {
-       Teacher teacher=new Teacher();
-        ArrayList<Teacher> teachers=teacher.getTeachers();
-        if (teachers.isEmpty()){
+        Teacher teacher = new Teacher();
+        ArrayList<Teacher> teachers = teacher.getTeachers();
+        if (teachers.isEmpty()) {
             System.out.println("No Records Available");
-        }else{
-            for (int i = 0; i < teachers.size(); i++) {
-
+        } else {
+            for (Teacher teacher1 : teachers) {
+                System.out.println(teacher1.toString());
             }
         }
+
+        //back to menu
+        showTeachersMenu();
     }
 
     @Override
     public void addTeacher() {
+        System.out.println("Add Teacher(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter teacher's name");
+            Scanner in = new Scanner(System.in);
+            String name = in.nextLine();
 
+            Teacher teacher = new Teacher(name);
+            if (!teacher.addTeacher(teacher)) {
+                System.out.println("Failed, please try again");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = in.nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showTeachersMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
     public void updateTeacher() {
+        System.out.println("Update Teacher(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter teacher's name");
+            Scanner in = new Scanner(System.in);
+            String name = in.nextLine();
 
+            Teacher teacher = new Teacher(name);
+            if (!teacher.addTeacher(teacher)) {
+                System.out.println("Failed, please try again");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = in.nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showTeachersMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override

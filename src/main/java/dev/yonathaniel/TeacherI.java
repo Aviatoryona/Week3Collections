@@ -9,5 +9,5 @@ public interface TeacherI {
 
     boolean deleteTeacher(int id);
 
-    boolean updateTeacher(int id);
+    boolean updateTeacher(int id,Teacher teacher);
 }
