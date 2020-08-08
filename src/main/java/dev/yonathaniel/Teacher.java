@@ -36,6 +36,9 @@ class Teacher implements TeacherI {
         this.dbConnection = DbConnection.getInstance();
     }
 
+    /*
+    Get all teachers
+     */
     @Override
     public Map<Integer, Teacher> getTeachers() throws SQLException {
         ResultSet resultSet = dbConnection.executeQuery("SELECT * FROM teachers");
