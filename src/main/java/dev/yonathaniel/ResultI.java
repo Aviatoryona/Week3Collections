@@ -1,6 +1,7 @@
 package dev.yonathaniel;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public interface ResultI {
@@ -15,9 +16,9 @@ public interface ResultI {
     String getRemarks();
 
 
-    Map<Integer, Result> getResults() throws SQLException, ClassNotFoundException;
+    ArrayList<ResultModel> viewAll() throws SQLException, ClassNotFoundException;
 
-    Map<Integer, Result> getResults() throws SQLException, ClassNotFoundException;
+    Map<Integer, Result> getResults(String admNo) throws SQLException, ClassNotFoundException;
 
     boolean addResult(Result result) throws SQLException, ClassNotFoundException;
 
