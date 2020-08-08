@@ -552,13 +552,73 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void addResult() {
+    public void addResult() throws SQLException, ClassNotFoundException {
+        System.out.println("Add Result(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter student's admission NO:");
+            String admNo = new Scanner(System.in).nextLine();
+            System.out.println("Enter subject title");
+            String subject = new Scanner(System.in).nextLine();
+            System.out.println("Enter student's score");
+            double score = new Scanner(System.in).nextDouble();
 
+            Result result = new Result();
+            if (!result.addResult(new ResultModel(
+                    -1,
+                    admNo,
+                    subject,
+                    score
+
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
-    public void updateResult() {
+    public void updateResult() throws SQLException, ClassNotFoundException {
+        System.out.println("Update Result(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter id:");
+            int id = new Scanner(System.in).nextInt();
+            System.out.println("Enter student's score");
+            double score = new Scanner(System.in).nextDouble();
 
+            Result result = new Result();
+            if (!result.updateResult(id, new ResultModel(
+                    -1,
+                    "",
+                    "",
+                    score
+
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override

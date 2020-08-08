@@ -38,9 +38,9 @@ public interface SystemDriverClassI {
 
     void showResultsMenu() throws SQLException, ClassNotFoundException;
 
-    void addResult();
+    void addResult() throws SQLException, ClassNotFoundException;
 
-    void updateResult();
+    void updateResult() throws SQLException, ClassNotFoundException;
 
     void deleteResult();
 
