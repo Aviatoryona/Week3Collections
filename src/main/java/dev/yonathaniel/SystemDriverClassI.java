@@ -3,7 +3,7 @@ package dev.yonathaniel;
 import java.sql.SQLException;
 
 public interface SystemDriverClassI {
-    void showMainMenu();
+    void showMainMenu() throws SQLException, ClassNotFoundException;
 
     void showTeachersMenu() throws SQLException, ClassNotFoundException;
 
@@ -15,17 +15,17 @@ public interface SystemDriverClassI {
 
     void deleteTeacher() throws SQLException, ClassNotFoundException;
 
-    void showSubjectsMenu();
+    void showSubjectsMenu() throws SQLException, ClassNotFoundException;
 
-    void viewSubjects();
+    void viewSubjects() throws SQLException, ClassNotFoundException;
 
-    void addSubject();
+    void addSubject() throws SQLException, ClassNotFoundException;
 
     void updateSubject();
 
     void deleteSubject();
 
-    void showStudentsMenu();
+    void showStudentsMenu() throws SQLException, ClassNotFoundException;
 
 
     void viewStudents();
@@ -36,7 +36,7 @@ public interface SystemDriverClassI {
 
     void deleteStudent();
 
-    void showResultsMenu();
+    void showResultsMenu() throws SQLException, ClassNotFoundException;
 
     void addResult();
 

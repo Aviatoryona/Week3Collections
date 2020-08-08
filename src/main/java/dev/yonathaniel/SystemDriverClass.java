@@ -1,15 +1,13 @@
 package dev.yonathaniel;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
 public class SystemDriverClass implements SystemDriverClassI {
 
     @Override
-    public void showMainMenu() {
+    public void showMainMenu() throws SQLException, ClassNotFoundException {
         System.out.println("    SELECT OPTION:  ");
         System.out.println("1. Manage Teachers");
         System.out.println("2. Manage Students");
@@ -156,11 +154,10 @@ public class SystemDriverClass implements SystemDriverClassI {
         System.out.println("Update Teacher(s):");
         char yN = 'y';
         do {
-            Scanner scannerU = new Scanner(System.in);
             System.out.println("Enter teacher's Id");
-            int id = scannerU.nextInt();
+            int id = new Scanner(System.in).nextInt();
             System.out.println("Enter teacher's name");
-            String name = scannerU.nextLine();
+            String name = new Scanner(System.in).nextLine();
             if (!teacher.updateTeacher(id, new Teacher(name))) {
                 System.out.println("Failed, please try again");
             } else {
@@ -168,7 +165,7 @@ public class SystemDriverClass implements SystemDriverClassI {
             }
 
             System.out.println("Proceed? (Y/N)");
-            yN = scannerU.nextLine().toLowerCase().charAt(0);
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
             if (yN == 'n') {
                 showTeachersMenu();
             } else {
@@ -183,9 +180,8 @@ public class SystemDriverClass implements SystemDriverClassI {
         System.out.println("Delete Teacher(s):");
         char yN = 'y';
         do {
-            Scanner scannerd = new Scanner(System.in);
             System.out.println("Enter teacher's Id");
-            int id = scannerd.nextInt();
+            int id = new Scanner(System.in).nextInt();
 
             Teacher teacher = new Teacher();
             if (!teacher.deleteTeacher(id)) {
@@ -195,7 +191,7 @@ public class SystemDriverClass implements SystemDriverClassI {
             }
 
             System.out.println("Proceed? (Y/N)");
-            yN = scannerd.nextLine().toLowerCase().charAt(0);
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
             if (yN == 'n') {
                 showTeachersMenu();
             } else {
@@ -206,7 +202,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void showSubjectsMenu() {
+    public void showSubjectsMenu() throws SQLException, ClassNotFoundException {
         System.out.println("");
         System.out.println("    Subjects Manage:    ");
         System.out.println("1. View All");
@@ -252,13 +248,47 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void viewSubjects() {
-
+    public void viewSubjects() throws SQLException, ClassNotFoundException {
+        Subject subject = new Subject();
+        Map<Integer, Subject> subjectMap = subject.getSubjects();
+        for (Integer integer :
+                subjectMap.keySet()) {
+            System.out.println(subjectMap.get(integer).toString());
+        }
     }
 
     @Override
-    public void addSubject() {
+    public void addSubject() throws SQLException, ClassNotFoundException {
+        System.out.println("Add Subject(s):");
+        char yN = 'y';
+        do {
+            System.out.println("Enter subject's title");
+            String name = new Scanner(System.in).nextLine();
+            System.out.println("Enter teacher's name");
+            String teacher = new Scanner(System.in).nextLine();
 
+            Subject subject = new Subject();
+
+            if (!subject.addSubject(new Subject(
+                    name,
+                    new Teacher(
+                            teacher
+                    )
+            ))) {
+                System.out.println("Failed, please try again");
+            } else {
+                System.out.println("Success!");
+            }
+
+            System.out.println("Proceed? (Y/N)");
+            yN = new Scanner(System.in).nextLine().toLowerCase().charAt(0);
+            if (yN == 'n') {
+                showSubjectsMenu();
+            } else {
+                yN = 'y';
+            }
+
+        } while (yN == 'y');
     }
 
     @Override
@@ -272,7 +302,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void showStudentsMenu() {
+    public void showStudentsMenu() throws SQLException, ClassNotFoundException {
         System.out.println("");
         System.out.println("    Students Manage:    ");
         System.out.println("1. View All");
@@ -339,7 +369,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     }
 
     @Override
-    public void showResultsMenu() {
+    public void showResultsMenu() throws SQLException, ClassNotFoundException {
         System.out.println("");
         System.out.println("    Results Manage:    ");
         System.out.println("1. View All");

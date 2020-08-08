@@ -1,5 +1,6 @@
 package dev.yonathaniel;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +13,13 @@ public class Main {
         /*
         show menu
          */
-        new SystemDriverClass().showMainMenu();
+        try {
+            new SystemDriverClass().showMainMenu();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -98,4 +98,5 @@ public class Subject implements SubjectI {
         preparedStatement.setInt(3, id);
         return dbConnection.execute(preparedStatement);
     }
+
 }
