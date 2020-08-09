@@ -10,6 +10,11 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        /*
+         1.Create a database
+         2. Create tables student,results,teacher and subjects. See systechtrainging.sql for schema
+         */
         /*
         show menu
          */

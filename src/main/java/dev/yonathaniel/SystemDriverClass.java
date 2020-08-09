@@ -510,6 +510,7 @@ public class SystemDriverClass implements SystemDriverClassI {
     public void showResultsMenu() throws SQLException, ClassNotFoundException {
         System.out.println("");
         System.out.println("    Results Manage:    ");
+        System.out.println("6. View For Student");
         System.out.println("1. View All");
         System.out.println("2. Add Result(s)");
         System.out.println("3. Delete Result(s)");
@@ -542,6 +543,11 @@ public class SystemDriverClass implements SystemDriverClassI {
 
                 case '5': {
                     clearResults();
+                    break;
+                }
+
+                case '6': {
+                    viewStudentResult();
                     break;
                 }
 

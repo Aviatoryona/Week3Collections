@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class Subject implements SubjectI {
     private String title;
-    private int score;
+    private double score;
     private Teacher teacher;
 
     private DbConnection dbConnection;
@@ -31,7 +31,7 @@ public class Subject implements SubjectI {
     /*
        set the score to zero if score>100
      */
-    void setScore(int score) {
+    void setScore(double score) {
         if (Math.abs(score) > 100)
             score = 0;
         this.score = Math.abs(score);
@@ -41,7 +41,7 @@ public class Subject implements SubjectI {
         return title;
     }
 
-    int getScore() {
+    double getScore() {
         return score;
     }
 

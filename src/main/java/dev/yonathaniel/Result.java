@@ -68,6 +68,10 @@ public class Result implements ResultI {
      */
     @Override
     public String getResult() {
+        if (student==null){
+            System.err.println("Student results doesn't exist");
+            return "";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(student.toString());
         for (Subject subject : this.subjects) {
@@ -124,6 +128,7 @@ public class Result implements ResultI {
                             resultSet.getString("teachername")
                     )
             );
+            subject.setScore(resultSet.getDouble("score"));
             subjects.add(subject);
 
         }
@@ -157,7 +162,7 @@ public class Result implements ResultI {
         PreparedStatement preparedStatement = dbConnection
                 .getPreparedStatement("UPDATE results SET score=? WHERE id=?");
         preparedStatement.setDouble(1, resultModel.getScore());
-        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, id);
         return dbConnection.execute(preparedStatement);
     }
 
